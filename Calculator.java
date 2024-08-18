@@ -24,7 +24,7 @@ class CalculatorProgram{
         this.x = x; //this. ensures that im updating the class attributes not parameters
         this.y = y;
     }
-    public int addNumbers(){
+    public int addNumbers(){ // always have to return int (whatever type the method is)
         z = x + y;
         return z;    }
     public int subtractNumbers(){
@@ -45,3 +45,4 @@ class CalculatorProgram{
         }
     }
 }
+// added comment
