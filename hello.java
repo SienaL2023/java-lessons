@@ -116,7 +116,7 @@ public class hello{
         // when getting length from strings u dont need () at the end
         stringArray[0] = "NotHello";
 
-        System.out.println(stringArray[0]);
+        System.out.println( Array[0]);
         System.out.println(numArray[1]);
         System.out.println(arrayLength);
         
