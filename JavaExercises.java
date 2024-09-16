@@ -4,12 +4,16 @@ import java.util.Arrays;
 public class JavaExercises{
     public static void main(String[] args) {
         JavaMethods methodObj = new JavaMethods();
-        // final int arr[] = {10, 300, 45, 90, 9800};
+        final int array[] = {135, 300, 45, 90, 90, 9800};
+        final int easyArray[] = {2,1,4,3,9,8,7};
         // methodObj.minMaxNum(arr);
         // final int ordered[] = {1,1,2,2,3,3,3,4,5};
         // methodObj.noRepeats(ordered);
-        methodObj.getChange(2.25, 1);
-        System.out.println(methodObj.isPrime(1290098761));
+        // methodObj.getChange(2.25, 1);
+        // System.out.printlfn(methodObj.isPrime(1290098761));
+        //System.out.println(methodObj.digitCount(22222, 2));
+        methodObj.pairAdd(array, 180);
+        System.out.println(methodObj.countConsecutiveNum(easyArray));
     }
 }
 
@@ -104,5 +108,95 @@ class JavaMethods{
 
 
     }
+
+    // exercise #5: write a program/method to compute the sum
+    // digits in an integer
+    // input: 52
+    // output: 7
+    int sumDigits(int num){
+        int sum = 0;
+        while(num > 0){
+            // 522
+            // 522 % 10 = 2 --> first digit
+            // 522/10 = 52
+            // 52 % 10 = 2 --> 2nd digit
+            // 52 / 10 = 5
+            // 5 % 10 = 5 --> 3rd digit
+            // 5/10 = 0 BREAK OUT OF LOOP
+            sum += num % 10;
+            num/= 10;
+        }
+        return sum;
+    }
+    // exercise #5: given an integer, count the number of
+    // digits with the value n
+    // input: 522, 2
+    // output: 2 times
+    int digitCount(int num, int n){
+        int x = 0;
+        int totalCount = 0;
+        while(num>0){ 
+            x = num % 10;
+            num = num/10;
+            if(x==n){
+                totalCount += 1;
+            }
+        }
+
+        return totalCount;
+    }
+
+    // exercise #6: given an array, return the sum and
+    //avg value of array elements
+    void sumAvg(int []arr){
+        int sum = 0;
+        double avg = 0;
+        double lenArr = arr.length;
+        for(int i = 0; i < lenArr; i++){
+            sum += arr[i];
+        }
+        avg = sum/lenArr;
+        System.out.println("the sum is " + sum);
+        System.out.println("The avg is " + avg);
+    }
+
+    // exercise #7: given an array print all pairs that
+    // add up to specific number
+    // input: array, specific num
+    // output: print pairs
+    void pairAdd(int []arr, int n){
+        int length = arr.length;
+        for(int i = 0; i < length; i++){
+            for(int j = i + 1; j < length-1; j++){
+                if(arr[i] + arr[j] == n){
+                    System.out.println(arr[i] + "+" + arr[j] + "=" + n);
+                }
+            }
+        }
+    }
+    // exercise #8: given an array, count highest number of consecutive numbers
+    // input: [2,1,4,3,9,8,7]  --> [1,2,3,4,7,8,9]
+    // output: 4
+    int countConsecutiveNum(int[]arr){
+        int consecutive = 1;
+        int maxConsecutive = 1;
+        Arrays.sort(arr);
+        for(int i = 1; i < arr.length; i++){
+            if(arr[i] == (arr[i-1] + 1)){
+                // went backwards instead of forwards bc u dont know whats ahead
+                // dont want out of bounds error
+                consecutive += 1;
+            }
+            else if(arr[i] != arr[i-1]) {
+                consecutive = 1; 
+                // resets the number of consecutive bc theres a break
+                // bc ur solving for the highest number
+            }
+            // to store the max number everytime
+            maxConsecutive = Math.max(maxConsecutive, consecutive);
+        }
+        return maxConsecutive;
+    }
+
 
 }
